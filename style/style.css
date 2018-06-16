@@ -1,0 +1,48 @@
+.search-bar {
+  margin: 20px;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 75%;
+}
+
+.weather-title {
+  color:white;
+}
+
+.weather-list {
+  border-style: solid;
+  border-color: #28293a;
+  background-color: #28293a;
+  border-width: 2px;
+  padding: 5%;
+}
+
+.weather-description {
+  color: white;
+  font-family:"Comic Sans MS", cursive, sans-serif;
+  font-size: 80%;
+}
+
+.day {
+  color:white;
+  font-size: 120%;
+}
+.media-heading {
+  font-size:110%;
+}
+
+.media-object {
+  width:100%;
+}
+
+.content{
+    background-color:#29282f;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    text-align:center;
+}
