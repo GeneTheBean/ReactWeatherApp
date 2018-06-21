@@ -6,7 +6,7 @@ var iconMap = new Map(); //Mapping Weather Conditions to icon file urls
 iconMap.set('Thunderstorm', '/img/icons/thunder.png');
 iconMap.set('Drizzle', '/img/icons/rain.png');
 iconMap.set('Rain', '/img/icons/rain.png');
-iconMap.set('Snow')
+iconMap.set('Snow', 'img/icons/snow.png');
 iconMap.set('Clear', '/img/icons/sun.png');
 iconMap.set('Clouds', '/img/icons/cloud.png');
 iconMap.set('Atmosphere', '/img/icons/atmosphere.png');
