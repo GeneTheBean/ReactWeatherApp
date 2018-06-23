@@ -5,24 +5,21 @@ import {connect} from 'react-redux';
 class WeatherList extends Component {
 
   renderList() {
-      if(this.checkForecasts())
-      return this.props.forecasts.list.map((forecast) => {
-
+    if(this.props.forecasts != null) {
+      return this.props.forecasts.map((forecast) => {
         return (
-
           <WeatherListItem
             key={forecast.dt}
             forecast={forecast}
           />
-
         );
       })
+    }
   }
 
   render() {
     return (
       <div>
-      <h1 className='weather-title'>5 Day Forecast For {this.getCityName()}</h1>
       <ul>
         {this.renderList()}
       </ul>
@@ -30,24 +27,10 @@ class WeatherList extends Component {
     );
   }
 
-  getCityName() {
-      if(this.checkForecasts())
-        return this.props.forecasts.city.name.toUpperCase();
-      else return "---";
-  }
-
-  checkForecasts() { //returns true if forecasts has data
-    return (this.props.forecasts.length != 0);
-  }
-
 }
 
-
 function mapStateToProps(state) {
-    return {
-      forecasts: state.forecasts,
-      //location: state.location
-    };
+    return {forecasts: state.forecasts};
 }
 
 export default connect(mapStateToProps)(WeatherList);

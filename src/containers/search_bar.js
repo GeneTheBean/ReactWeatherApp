@@ -2,47 +2,37 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {searchTerm} from '../actions/index';
 import {bindActionCreators} from 'redux';
-const API_Key = '922d2bc180766311e15d37de8d5aae84';
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {term: ''};
+
+    this.onInputChange = this.onInputChange.bind(this);
+  }
 
   render() {
     return (
       <div className='search-bar'>
         <input
-        value={this.props.term}
+        value={this.state.term}
         placeholder="Enter a zip code to fetch a forecast from. Only United States zip codes can be searched."
-        onChange={event => this.onInputChange(event.target.value)}
+        onChange={this.onInputChange}
         maxLength='5'></input>
       </div>
     );
   }
 
-  onInputChange(term) {
-     this.props.searchTerm(term);
-     if(term.length == 5) {
-        this.weatherSearch(term);
-     }
+  onInputChange(event) {
+    this.setState({term: event.target.value});
+
+    if(event.target.value.length == 5) {
+      this.props.searchTerm(event.target.value);
+      this.setState({term: ''});
+    }
   }
 
-  weatherSearch(zip) {
-    var context = this;
-    return fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${zip}&appid=${API_Key}`)
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
-        }
-        return response.json();
-      }).then((data) => {
-          context.props.searchTerm(zip, data);
-      });
-  }
-}
-
-function mapStateToProps(state){
-  return {
-    term: state.term
-  }
 }
 
 //Anything returned from this function will end up as mapStateToProps
@@ -53,4 +43,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({searchTerm: searchTerm}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(SearchBar);

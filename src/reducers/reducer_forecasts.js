@@ -1,9 +1,8 @@
-
-export default function(state = [], action) {
+export default function(state = null, action) {
 
   switch(action.type) {
-    case 'CURRENT_SEARCH':
-      return action.payload
+    case 'FETCH_WEATHER':
+    return action.payload.list;
   }
 
   return state;
